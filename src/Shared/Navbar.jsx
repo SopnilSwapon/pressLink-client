@@ -77,8 +77,8 @@ const Navbar = () => {
                         </>
                         :
                         <div className="flex gap-2">
-                            <button className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white"><NavLink to='/signUp'>Sign Up</NavLink></button>
-                            <button className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white"><NavLink to='/login'>Login</NavLink></button>
+                            <button className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white"><NavLink to='/signUp'>SignUp</NavLink></button>
+                            <button className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white"><NavLink to='signIn'>SignIn</NavLink></button>
                         </div>
                     }
                 </div>

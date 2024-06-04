@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import Lottie from "lottie-react";
 import regPic from '../../../public/Animation - 1717395654354.json'
+import { FcGoogle } from "react-icons/fc";
 const SignIn = () => {
     const {
         register,
@@ -19,13 +20,16 @@ const SignIn = () => {
        <label htmlFor="name" className="block">Email</label>
       <input type="email" className="input input-bordered block w-full" placeholder="type your email"  {...register("email", { required: true })} />
        <label htmlFor="name" className="block">Password</label>
-      <input type="password" className="input input-bordered block" placeholder="type your password"  {...register("password", { required: true, minLength: 6, pattern: /^[A-Za-z]+$/i })} />
-      {errors.exampleRequired && <span>This field is required</span>}
+      <input type="password" className="input input-bordered block" placeholder="type your password"  {...register("password", { required: true})} />
+      {errors.email || errors.password ? <span>You have wrong email & password</span> : null}
  
       <input value='Sign In' className="btn btn-primary mt-4" type="submit" />
+     <div className="text-center text-gray-500">
+     <p>Social login links</p>
+        <FcGoogle className="text-3xl w-10 mt-3 mx-auto"></FcGoogle>
+     </div>
        </div>
      </form>
-        {/* </div> */}
         </div>
          </div>
     );

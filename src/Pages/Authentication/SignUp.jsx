@@ -1,15 +1,27 @@
 import { useForm } from "react-hook-form"
 import Lottie from "lottie-react";
 import regPic from '../../../public/Animation - 1717392611042.json'
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
+  const {createUser} = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) =>{ 
+    const {email, password} = data;
+    createUser(email, password)
+    .then(res =>{
+      console.log(res.user);
+    })
+    .catch(error =>{
+      console.log(error.message);
+    })
+    
+  }
     return (
         <div className="pt-24 min-h-[calc(100vh-312px)]">
        <div className="md:flex justify-center items-center border border-r-red-600">
@@ -24,9 +36,8 @@ const SignUp = () => {
       <label htmlFor="name" className="block">Email</label>
      <input type="email" className="input input-bordered block" placeholder="type your email"  {...register("email", { required: true })} />
       <label htmlFor="name" className="block">Password</label>
-     <input type="password" className="input input-bordered block" placeholder="type your password"  {...register("email", { required: true })} />
-     {errors.exampleRequired && <span>This field is required</span>}
-
+     <input name="password" type="password" className="input input-bordered block" placeholder="type your password"  {...register("password", { required: true, minLength: 6, pattern:  /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9])/})} />
+     {errors.password && <span className="text-red-700">Password should have at least six character & one uppercase,lowercase, digit & special character.</span>}
      <input value='Sign Up' className="btn btn-primary mt-5" type="submit" />
       </div>
     </form>

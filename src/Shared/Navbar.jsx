@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-// import 'react-toastify/dist/ReactToastify.css';
 import './theme.css'
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
     const [theme, setTheme] = useState('light');
@@ -15,10 +15,10 @@ const Navbar = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
-    const users = false;
 
 
-    // const { LogOut, users } = useContext(AuthContext);
+    const { logOut, user } = useAuth();
+    // console.log();
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allArticle'>All Article</NavLink></li>
@@ -29,17 +29,11 @@ const Navbar = () => {
         <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
     </>
     const handleLogOut = () => {
-        // LogOut()
-        //     .then(() => {
-        //         toast('LogOut Successful')
-        //     })
-        //     .catch(error => {
-        //         console.error(error.message)
-        //     })
+        logOut()
     }
     return (
         <div className={`Navbar ${theme}`}>
-            <div className="navbar bg-[#2F4F4F] max-w-7xl mx-auto fixed z-10 rounded-lg mb-4">
+            <div className="navbar bg-gray-300 max-w-7xl mx-auto fixed z-10 rounded-lg mb-4">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,7 +52,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {users ?
+                    {user ?
                         <>
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -67,12 +61,11 @@ const Navbar = () => {
                                         data-tooltip-content={users?.displayName}
                                         data-tooltip-place="top"
                                     > */}
-                                   <img alt="Tailwind CSS Navbar component" src={users?.photoURL}  />
-                                    {/* </a> */}
+                                   <img alt="Tailwind CSS Navbar component" src={user?.photoURL}  />
                                     
                                 </div>
                             </div>
-                            <button onClick={handleLogOut} className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white"><NavLink to='/login'>LogOut</NavLink></button>
+                            <button onClick={handleLogOut} className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white">LogOut</button>
 
                         </>
                         :

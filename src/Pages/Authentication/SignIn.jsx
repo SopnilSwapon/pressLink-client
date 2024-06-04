@@ -2,14 +2,49 @@ import { useForm } from "react-hook-form"
 import Lottie from "lottie-react";
 import regPic from '../../../public/Animation - 1717395654354.json'
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 const SignIn = () => {
+  const {loginUser, googleLogin} = useAuth();
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm()
     
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) =>{
+        const {email, password} = data;
+        loginUser(email, password)
+        .then(res =>{
+          console.log(res.user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
+        .catch(error =>{
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "You have wrong email & password",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          console.error(error.message)
+        })
+              };
+              const handleGoogleLogin = () =>{
+                googleLogin()
+                .then(res =>{
+                  console.log(res.user)
+                })
+                .catch(error =>{
+                  console.error(error.message)
+                }) 
+              }
     return (
         <div className="pt-24 min-h-[calc(100vh-312px)]">
         <div className="md:flex justify-center gap-10 items-center border border-r-red-600">
@@ -26,7 +61,7 @@ const SignIn = () => {
       <input value='Sign In' className="btn btn-primary mt-4" type="submit" />
      <div className="text-center text-gray-500">
      <p>Social login links</p>
-        <FcGoogle className="text-3xl w-10 mt-3 mx-auto"></FcGoogle>
+        <FcGoogle onClick={handleGoogleLogin} className="text-3xl w-10 mt-3 mx-auto"></FcGoogle>
      </div>
        </div>
      </form>

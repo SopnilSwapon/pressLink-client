@@ -3,6 +3,7 @@ import Select from 'react-select';
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import moment from "moment/moment";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -59,7 +60,16 @@ const AddArticle = () => {
             console.log(newNews);
             const newsResult = await axiosPublic.post('/news', newNews);
             console.log(newsResult.data);
-            reset()
+            if(newsResult.data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data.publisher}'s added successful`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                reset()
+            }
         }
 
     }

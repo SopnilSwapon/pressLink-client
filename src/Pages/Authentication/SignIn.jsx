@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import Lottie from "lottie-react";
-import regPic from '../../../public/Animation - 1717395654354.json'
+import regPic from '../../assets/Animation - 1717395654354.json'
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";

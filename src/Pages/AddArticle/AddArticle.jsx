@@ -1,10 +1,11 @@
-
-
-import { MdOutlineArrowDropDown } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import Select from 'react-select';
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import moment from "moment/moment";
+import useAuth from "../../Hooks/useAuth";
 
-
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const newsFeedTags = [
     { value: '#breakingnews', label: '#Breaking News' },
     { value: '#latestupdates', label: '#Latest Updates' },
@@ -22,18 +23,45 @@ const newsFeedTags = [
     { value: '#mustread', label: '#Must Read' },
     { value: '#insight', label: '#Insight' },
 ];
-
-
 const AddArticle = () => {
+    const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const {user} = useAuth()
+    const axiosPublic = useAxiosPublic();
     const {
         register,
         handleSubmit,
-        setValue
+        setValue, 
+        reset
     } = useForm();
 
 
-    const onSubmit = (data) => {
+    const onSubmit =async (data) => {
         console.log(data);
+        const imageFile = {image: data.image[0]};
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        console.log(res.data);
+        if(res.data.success){
+            const newNews = {
+                headline: data.headline,
+                publisher: data.publisher,
+                image: res.data.display_url,
+                description: data.description,
+                tags: data.tags,
+                date: date,
+                author_email: user?.email,
+                author_image: user?.photoURL,
+                author_name: user?.displayName
+            }
+            console.log(newNews);
+            const newsResult = await axiosPublic.post('/news', newNews);
+            console.log(newsResult.data);
+            reset()
+        }
+
     }
     const handleTags = (tags) => {
         const selectedTags = tags.map(tag => tag.value);
@@ -53,8 +81,8 @@ const AddArticle = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
                             <div>
                                 <label className="font-medium block" htmlFor="tags">Select Publisher</label>
-                                <select {...register('publisher', {required: true})} className="select select-bordered w-full">
-                                    <option disabled selected>news desk</option>
+                                <select defaultValue='default' {...register('publisher', {required: true})} className="select select-bordered w-full">
+                                    <option disabled value='default'>news desk</option>
                                     <option>The Hunger Games</option>
                                     <option>The Chronicles of Narnia</option>
                                     <option>Game of Thrones</option>
@@ -75,7 +103,7 @@ const AddArticle = () => {
                             </div>
                             <div className="block">
                             <label className="font-medium block" htmlFor="tags">Upload Photo</label>
-                                <input type="file" className="file-input input-bordered w-full" />
+                                <input {...register('image', {required: true})} type="file" className="file-input input-bordered w-full" />
                             </div>
                             
                             

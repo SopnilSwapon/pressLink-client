@@ -1,21 +1,34 @@
 import { useForm } from "react-hook-form"
 import Lottie from "lottie-react";
-import regPic from '../../../public/Animation - 1717392611042.json'
+import regPic from '../../assets/Animation - 1717392611042.json'
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
+const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
   const {createUser} = useAuth();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) =>{ 
+  const onSubmit = async (data) =>{ 
     const {email, password} = data;
+    console.log(data);
+    const imageFile = {image: data.image[0]}
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    } );
+    console.log(res.data);
     createUser(email, password)
-    .then(res =>{
-      console.log(res.user);
+    .then(result =>{
+      console.log(result.user);
+      
     })
     .catch(error =>{
       console.log(error.message);
@@ -31,8 +44,12 @@ const SignUp = () => {
       <h2 className="text-4xl font-bold text-center mb-5">Sign Up</h2>
       <label htmlFor="name" className="block">Name</label>
       <input type="text" className="input input-bordered" placeholder="type your name" {...register("name")} />
-      <label htmlFor="name" className="block">Photo URL</label>
-     <input type="text" className="input input-bordered block" placeholder="type your photo url"  {...register("photo", { required: true })} />
+      {/* <label htmlFor="name" className="block">Photo URL</label>
+     <input type="text" className="input input-bordered block" placeholder="type your photo url"  {...register("photo", { required: true })} /> */}
+     <div className="block">
+                            <label className="font-medium block" htmlFor="tags">Upload Photo</label>
+                                <input {...register('image', {required: true})} type="file" className="file-input input-bordered w-full" />
+                            </div>
       <label htmlFor="name" className="block">Email</label>
      <input type="email" className="input input-bordered block" placeholder="type your email"  {...register("email", { required: true })} />
       <label htmlFor="name" className="block">Password</label>

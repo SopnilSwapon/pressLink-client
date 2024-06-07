@@ -11,7 +11,7 @@ const UsersStatictics = () => {
     };
     return (
         
-        <section className="p-6 my-6 dark:bg-gray-100 dark:text-gray-800">
+        <section className="p-6 pt-0 w-[90%] mx-auto dark:bg-gray-100 dark:text-gray-800">
             <h2></h2>
 	<div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 lg:grid-cols-3">
 		<div className="flex p-4 space-x-4 rounded-lg md:space-x-6 dark:bg-gray-50 dark:text-gray-800">

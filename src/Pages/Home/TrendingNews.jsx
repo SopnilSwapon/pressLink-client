@@ -7,22 +7,13 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { useQuery} from '@tanstack/react-query'
 import './trending.css';
 
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper/modules';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
 const TrendingNews = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const axiosPublic = useAxiosPublic();
-    const {data:news=[], refetch} = useQuery({
-      queryKey: ['news'],
-      queryFn: async () =>{
-        const res = await axiosPublic.get('/news');
-        return res.data
-      }
-    })
+    
 
     return (
         <div className='h-full'>

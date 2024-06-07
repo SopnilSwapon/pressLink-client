@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 const Article = ({aNews}) => {
-    console.log(aNews?.description);
   const highlightDescription = aNews?.description?.length > 70 ? aNews.description.slice(0, 70) + '...' : aNews?.description;
     return (
         <div className="p-6 rounded-md shadow-md">

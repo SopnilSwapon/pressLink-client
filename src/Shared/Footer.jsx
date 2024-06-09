@@ -10,24 +10,21 @@ const Footer = () => {
 									<path d="M18.266 26.068l7.839-7.854 4.469 4.479c1.859 1.859 1.859 4.875 0 6.734l-1.104 1.104c-1.859 1.865-4.875 1.865-6.734 0zM30.563 2.531l-1.109-1.104c-1.859-1.859-4.875-1.859-6.734 0l-6.719 6.734-6.734-6.734c-1.859-1.859-4.875-1.859-6.734 0l-1.104 1.104c-1.859 1.859-1.859 4.875 0 6.734l6.734 6.734-6.734 6.734c-1.859 1.859-1.859 4.875 0 6.734l1.104 1.104c1.859 1.859 4.875 1.859 6.734 0l21.307-21.307c1.859-1.859 1.859-4.875 0-6.734z"></path>
 								</svg>
 							</div>
-							<span className="self-center text-xl md:text-2xl  font-semibold">World Tour</span>
+							<span className="self-center text-xl md:text-2xl  font-semibold">PresLink</span>
 						</a>
 					</div>
 					<div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4 mx-auto">
 						<div className="space-y-3">
-							<h3 className="tracking-wide uppercase dark:text-gray-900">Country</h3>
+							<h3 className="tracking-wide uppercase dark:text-gray-900">About Us</h3>
 							<ul className="space-y-1">
 								<li>
-									<a rel="noopener noreferrer" href="#">USA</a>
+									<a rel="noopener noreferrer" href="#">Contact Us</a>
 								</li>
 								<li>
-									<a rel="noopener noreferrer" href="#">Canada</a>
+									<a rel="noopener noreferrer" href="#">Apps</a>
 								</li>
 								<li>
-									<a rel="noopener noreferrer" href="#">Argentina</a>
-								</li>
-								<li>
-									<a rel="noopener noreferrer" href="#">Peru</a>
+									<a rel="noopener noreferrer" href="#">window apps</a>
 								</li>
 							</ul>
 						</div>
@@ -49,13 +46,13 @@ const Footer = () => {
 							<h3 className="uppercase dark:text-gray-900">Directions</h3>
 							<ul className="space-y-1">
 								<li>
-									<a rel="noopener noreferrer" href="#">Dress-Up</a>
+									<a rel="noopener noreferrer" href="#">Stay with us</a>
 								</li>
 								<li>
-									<a rel="noopener noreferrer" href="#">To safe travel</a>
+									<a rel="noopener noreferrer" href="#">To get all be premium</a>
 								</li>
 								<li>
-									<a rel="noopener noreferrer" href="#">Hotel</a>
+									<a rel="noopener noreferrer" href="#">feedback</a>
 								</li>
 							</ul>
 						</div>
@@ -81,7 +78,7 @@ const Footer = () => {
 						</div>
 					</div>
 				</div>
-				<div className="py-6 text-sm text-center dark:text-gray-600">© 2023 Copyright by Programming hero. All rights reserved.</div>
+				<div className="py-6 text-sm text-center dark:text-gray-600">© 2023 Copyright by PressLink. All rights reserved.</div>
 			</footer>
 		</div>
 	);

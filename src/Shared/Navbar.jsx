@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import './theme.css'
 import useAuth from "../Hooks/useAuth";
+import useAdminRole from "../Hooks/useAdminRole";
 
 const Navbar = () => {
     const [theme, setTheme] = useState('light');
+    const { logOut, user } = useAuth();
+    const userRole = useAdminRole();
     const toggleTheme = () => {
         if (theme === 'light') {
             setTheme('dark');
@@ -15,16 +18,16 @@ const Navbar = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
-
-
-    const { logOut, user } = useAuth();
-    // console.log();
+  console.log( 'role', userRole);
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allArticle'>All Article</NavLink></li>
         <li><NavLink to='/addArticle'>Add Article</NavLink></li>
         <li><NavLink to='/subscription'>Subscription</NavLink></li>
-        <li><NavLink to='/dashboard/allUsers'>Dashboard</NavLink></li>
+        
+        {
+            userRole === 'Admin' ? <li><NavLink to='/dashboard/allUsers'>Dashboard</NavLink></li> : ''
+        }
         <li><NavLink to='/myArticle'>My Article</NavLink></li>
         <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
     </>

@@ -11,6 +11,7 @@ import AllArticle from "../Pages/AllArticle/AllArticle";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../Pages/AllUsers/AllUsers";
+import AllArticleDash from "../Pages/Dashboard/AllArticleDash";
   
   const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import AllUsers from "../Pages/AllUsers/AllUsers";
         {
           path: 'allUsers',
           element: <AllUsers></AllUsers>
+        },
+        {
+          path: 'allArticleDash',
+          element: <AllArticleDash></AllArticleDash>
         }
       ]
     }

@@ -3,12 +3,16 @@ import Lottie from "lottie-react";
 import regPic from '../../assets/Animation - 1717392611042.json'
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
+import { getAuth, updateProfile } from "firebase/auth";
+import app from "../../firebase/firebase";
 
 const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
   const {createUser} = useAuth();
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,19 +20,34 @@ const SignUp = () => {
   } = useForm()
 
   const onSubmit = async (data) =>{ 
-    const {email, password} = data;
+    const {email, password, name} = data;
     console.log(data);
     const imageFile = {image: data.image[0]}
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    const imgRes = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         'content-type': 'multipart/form-data'
       }
     } );
-    console.log(res.data);
+    console.log(imgRes.data);
     createUser(email, password)
     .then(result =>{
       console.log(result.user);
-      
+      updateProfile(result.user , {
+        displayName: name,
+        email: email,
+        photoURL: imgRes.data.data.image.url
+      })
+      const userInfo = {
+        email: email,
+        name: name,
+        photo: imgRes.data.data.image.url
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(res =>{
+       
+        console.log(res.data);
+        navigate('/')
+      })
     })
     .catch(error =>{
       console.log(error.message);

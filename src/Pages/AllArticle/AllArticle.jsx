@@ -69,7 +69,7 @@ const AllArticle = () => {
     }
   }) 
   const {data:tagsData=[], isPending:tagDataPending} = useQuery({
-    queryKey: ['tagsData'],
+    queryKey: ['tagsData', newsTag],
     queryFn: async() =>{
       const result = await axiosPublic(`/newsTags/${newsTag}`);
       return result.data

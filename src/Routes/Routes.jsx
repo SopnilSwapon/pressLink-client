@@ -9,6 +9,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AddArticle from "../Pages/AddArticle/AddArticle";
 import AllArticle from "../Pages/AllArticle/AllArticle";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import AllUsers from "../Pages/AllUsers/AllUsers";
   
   const router = createBrowserRouter([
     {
@@ -38,6 +40,16 @@ import PrivateRoute from "./PrivateRoute";
         }
       ]
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: 'allUsers',
+          element: <AllUsers></AllUsers>
+        }
+      ]
+    }
   ]);
 
 export default router;

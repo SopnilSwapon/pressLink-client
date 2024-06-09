@@ -4,8 +4,7 @@ import regPic from '../../assets/Animation - 1717392611042.json'
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
-import { getAuth, updateProfile } from "firebase/auth";
-import app from "../../firebase/firebase";
+import {  updateProfile } from "firebase/auth";
 
 const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`

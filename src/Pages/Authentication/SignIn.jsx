@@ -4,8 +4,12 @@ import regPic from '../../assets/Animation - 1717395654354.json'
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const {loginUser, googleLogin} = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -20,10 +24,11 @@ const SignIn = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Your work has been saved",
+            title: "sign in successful",
             showConfirmButton: false,
             timer: 1500
           });
+          navigate('/')
         })
         .catch(error =>{
           Swal.fire({
@@ -39,7 +44,26 @@ const SignIn = () => {
               const handleGoogleLogin = () =>{
                 googleLogin()
                 .then(res =>{
-                  console.log(res.user)
+                  console.log(res.user);
+                  const userInfo = {
+                    email: res.user.email,
+                    name: res.user.displayName,
+                    photo: res.user.photoURL
+                  }
+                  axiosPublic.post('/users', userInfo)
+                  .then(res =>{
+                    console.log(res.data);
+                    navigate('/');
+                    if(res.data.insertedId){
+                      Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "google login successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    }
+                  })                  
                 })
                 .catch(error =>{
                   console.error(error.message)

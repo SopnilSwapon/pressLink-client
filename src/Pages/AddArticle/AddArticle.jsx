@@ -55,7 +55,8 @@ const AddArticle = () => {
                 date: date,
                 author_email: user?.email,
                 author_image: user?.photoURL,
-                author_name: user?.displayName
+                author_name: user?.displayName,
+                status: 'Approve',
             }
             console.log(newNews);
             const newsResult = await axiosPublic.post('/news', newNews);

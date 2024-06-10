@@ -49,7 +49,7 @@ const AddArticle = () => {
             const newNews = {
                 headline: data.headline,
                 publisher: data.publisher,
-                image: res.data.display_url,
+                image: res.data.data.image.url,
                 description: data.description,
                 tags: data.tags,
                 date: date,
@@ -64,7 +64,7 @@ const AddArticle = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `${data.publisher}'s added successful`,
+                    title: `This news added successful in the ${data.publisher}' publisher`,
                     showConfirmButton: false,
                     timer: 1500
                   });
@@ -95,7 +95,7 @@ const AddArticle = () => {
                                     <option disabled value='default'>news desk</option>
                                     <option>The Hunger Games</option>
                                     <option>The Chronicles of Narnia</option>
-                                    <option>Game of Thrones</option>
+                                    <option>Sports</option>
                                     <option>The Matrix</option>
                                     <option>Jurassic Park</option>
                                     <option>Marvel Cinematic Universe</option>

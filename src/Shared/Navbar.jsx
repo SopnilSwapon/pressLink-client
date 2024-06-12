@@ -23,12 +23,12 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allArticle'>All Article</NavLink></li>
         <li><NavLink to='/addArticle'>Add Article</NavLink></li>
+        <li><NavLink to='/myArticle'>My Article</NavLink></li>
         <li><NavLink to='/subscription'>Subscription</NavLink></li>
         
         {
             userRole === 'Admin' ? <li><NavLink to='/dashboard/allUsers'>Dashboard</NavLink></li> : ''
         }
-        <li><NavLink to='/myArticle'>My Article</NavLink></li>
         <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
     </>
     const handleLogOut = () => {

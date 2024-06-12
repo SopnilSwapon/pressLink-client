@@ -13,6 +13,8 @@ import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import AllArticleDash from "../Pages/Dashboard/AllArticleDash";
 import NewsDetails from "../Pages/NewsDetails/NewsDetails";
+import AddPublisher from "../Pages/Dashboard/AddPublisher";
+import MyArticle from "../Pages/MyArticle/MyArticle";
   
   const router = createBrowserRouter([
     {
@@ -43,6 +45,10 @@ import NewsDetails from "../Pages/NewsDetails/NewsDetails";
         {
           path: '/newsDetails/:id',
           element: <NewsDetails></NewsDetails>
+        },
+        {
+          path: '/myArticle',
+          element: <MyArticle></MyArticle>
         }
       ]
     },
@@ -57,6 +63,10 @@ import NewsDetails from "../Pages/NewsDetails/NewsDetails";
         {
           path: 'allArticleDash',
           element: <AllArticleDash></AllArticleDash>
+        },
+        {
+          path: 'addPublisher',
+          element: <AddPublisher></AddPublisher>
         }
       ]
     }

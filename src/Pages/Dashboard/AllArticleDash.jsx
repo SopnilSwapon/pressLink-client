@@ -13,10 +13,9 @@ const AllArticleDash = () => {
     });
     return (
         <section className="py-6">
-            <div className="container flex flex-col items-center justify-center p-4 mx-auto sm:p-10">
-                <p className="p-2 text-center uppercase">Development team</p>
-                <h1 className="text-3xl font-bold text-center">The talented people behind the scenes</h1>
-                <div className="flex flex-row flex-wrap-reverse justify-center mt-8">
+            <div className="container flex flex-col items-center justify-center p-2 mx-auto sm:p-10">
+                <h1 className="text-3xl font-bold text-center">Manages All Articles</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center mt-8">
                 {
                     addedNews.map(news =><AllArticleDashCart
                         key={news._id}

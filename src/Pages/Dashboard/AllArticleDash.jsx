@@ -17,7 +17,7 @@ const AllArticleDash = () => {
                 <h1 className="text-3xl font-bold text-center">Manages All Articles</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center mt-8">
                 {
-                    addedNews.map(news =><AllArticleDashCart
+                    addedNews?.map(news =><AllArticleDashCart
                         key={news._id}
                         news={news}
                         refetch={refetch}

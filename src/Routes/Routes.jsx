@@ -15,6 +15,8 @@ import AllArticleDash from "../Pages/Dashboard/AllArticleDash";
 import NewsDetails from "../Pages/NewsDetails/NewsDetails";
 import AddPublisher from "../Pages/Dashboard/AddPublisher";
 import MyArticle from "../Pages/MyArticle/MyArticle";
+import Subscription from "../Pages/Subscription/Subscription";
+import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
   
   const router = createBrowserRouter([
     {
@@ -49,6 +51,14 @@ import MyArticle from "../Pages/MyArticle/MyArticle";
         {
           path: '/myArticle',
           element: <MyArticle></MyArticle>
+        },
+        {
+          path: '/subscription',
+          element: <Subscription></Subscription>
+        },
+        {
+          path: '/premiumArticle',
+          element: <PremiumArticle></PremiumArticle>
         }
       ]
     },

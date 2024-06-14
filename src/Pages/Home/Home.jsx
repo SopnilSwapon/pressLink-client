@@ -1,3 +1,4 @@
+import PermanentPremiumUsers from "./PermanentPremiumUsers";
 import Plans from "./Plans";
 import TrendingNews from "./TrendingNews";
 import UsersStatictics from "./UsersStatictics";
@@ -8,6 +9,7 @@ const Home = () => {
             <TrendingNews></TrendingNews>
             <UsersStatictics></UsersStatictics>
             <Plans></Plans>
+            <PermanentPremiumUsers></PermanentPremiumUsers>
         </div>
     );
 };

@@ -18,7 +18,6 @@ const Navbar = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
-  console.log( 'role', userRole);
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allArticle'>All Article</NavLink></li>

@@ -44,8 +44,6 @@ const AllArticle = () => {
     setPublisherName('');
     setSearchText('')
   };
-
-  console.log(publisherName);
   const handleSearch = e =>{
     e.preventDefault();
     const search = e.target.elements.searchField.value;
@@ -75,10 +73,9 @@ const AllArticle = () => {
       return result.data
     }
   })
-console.log('tags', tagsData, newsTag);
   return (
     <div className='min-h-[calc(100vh-313px)] pt-24'>
-      <div className='flex w-[95%] mx-auto gap-4 justify-center'>
+      <div className='flex w-[95%] mb-5 mx-auto gap-4 justify-center'>
         <div className='w-full'>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>

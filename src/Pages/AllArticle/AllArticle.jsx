@@ -12,7 +12,7 @@ const AllArticle = () => {
   const [searchText, setSearchText] = useState(' ');
   const [newsTag, setNewsTag] = useState(' ');
 
-  const { data: news = [], isPending } = useQuery({
+  const { data: news = [], isPending ,isFetching} = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
       const res = await axiosPublic.get('/news');
@@ -129,7 +129,7 @@ const AllArticle = () => {
           <button type='submit' className='btn bg-black h-14 rounded-l-none text-white'>Search</button>
         </form>
       </div>
-      { isPending || isPublishPending || searchPending || tagDataPending? (
+      {/* { isPending || isPublishPending || searchPending || tagDataPending? (
         <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie>
       ) : (
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
@@ -152,7 +152,29 @@ const AllArticle = () => {
             : news.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
           }
         </div>
-      )}
+      )} */}
+      {isFetching ?  <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie> : 
+      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+      {publisherName || searchText || newsTag ?
+       <>
+        {
+          publisherName ?
+          publish.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
+          :
+          <>
+          { searchText ?
+            searchData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
+            :
+            tagsData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
+          }
+          </>
+
+        }
+      </>
+        : news.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
+      }
+    </div>
+      }
     </div>
   );
 };

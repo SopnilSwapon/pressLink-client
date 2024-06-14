@@ -5,6 +5,7 @@ import { FaSackDollar } from "react-icons/fa6";
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const subscriptionOptions = [
     { value: 1, label: '1 Minute Category' },
@@ -59,7 +60,7 @@ const Subscription = () => {
                     </div>
                 </div>
                 <button type='submit' className='btn btn-primary'>Subscribe</button>
-                {/* <div className='flex items-center justify-center'><button className={buttonNormal} type="submit">Subscribe</button></div> */}
+                <Link to='/payment'><button>Payment</button></Link>
             </form >
       </div>
         // </div>

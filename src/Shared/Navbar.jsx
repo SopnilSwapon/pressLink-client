@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './theme.css'
 import useAuth from "../Hooks/useAuth";
 import useAdminRole from "../Hooks/useAdminRole";
@@ -24,7 +24,7 @@ const Navbar = () => {
         <li><NavLink to='/addArticle'>Add Article</NavLink></li>
         <li><NavLink to='/myArticle'>My Article</NavLink></li>
         <li><NavLink to='/subscription'>Subscription</NavLink></li>
-        
+
         {
             userRole === 'Admin' ? <li><NavLink to='/dashboard/allUsers'>Dashboard</NavLink></li> : ''
         }
@@ -58,13 +58,10 @@ const Navbar = () => {
                         <>
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    {/* <a
-                                        data-tooltip-id="my-tooltip"
-                                        data-tooltip-content={users?.displayName}
-                                        data-tooltip-place="top"
-                                    > */}
-                                   <img alt="Tailwind CSS Navbar component" src={user?.photoURL}  />
-                                    
+                                    <Link to='/myProfile'>
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                    </Link>
+
                                 </div>
                             </div>
                             <button onClick={handleLogOut} className="btn bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 text-white">LogOut</button>

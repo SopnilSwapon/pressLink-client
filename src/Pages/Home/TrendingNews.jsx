@@ -11,9 +11,19 @@ import './trending.css';
 
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper/modules';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 const TrendingNews = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    
+    const axiosPublic = useAxiosPublic();
+    const {data: mostViewsNews=[]} = useQuery({
+      queryKey: ['mostViewsNews'],
+      queryFn: async () =>{
+        const res = await axiosPublic('/news/six?size=6&sort=-1');
+        return res.data
+      }
+    })
+    console.log(mostViewsNews);
 
     return (
         <div className='h-full'>
@@ -38,19 +48,12 @@ const TrendingNews = () => {
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className="mySwiper2 flex mx-auto border border-red-600"
       >
-        <SwiperSlide>
-          <img className='w-full mx-auto' src="https://img.freepik.com/premium-photo/anchors-talking-breaking-news-evening-television-studio-closeup-hosts-speaking_723208-26773.jpg?w=740" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full mx-auto' src="https://img.freepik.com/premium-photo/word-news-spelled-wooden-letters-table_662214-460760.jpg?w=740" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full mx-auto' src="https://bangladeshpost.net/webroot/uploads/featureimage/2024-05/66560c0762d7c.jpg" />
-        </SwiperSlide>
-        
-        <SwiperSlide>
-          <img className='w-full mx-auto' src="https://img.freepik.com/premium-photo/wooden-table-with-wooden-background-green-screen-news-studio-3d-illustration_327072-1419.jpg?w=740" />
-        </SwiperSlide>
+        {
+          mostViewsNews.map(news => <SwiperSlide key={news._id}>
+            <p className='text-white font-bold right-5 mt-3 absolute z-20'> Views: {news.views}</p>
+            <img className='w-full mx-auto relative' src={news.image} />
+          </SwiperSlide>)
+        }
       
       </Swiper>
       <Swiper
@@ -69,18 +72,11 @@ const TrendingNews = () => {
         }}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://img.freepik.com/premium-photo/anchors-talking-breaking-news-evening-television-studio-closeup-hosts-speaking_723208-26773.jpg?w=740" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.freepik.com/premium-photo/word-news-spelled-wooden-letters-table_662214-460760.jpg?w=740" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://bangladeshpost.net/webroot/uploads/featureimage/2024-05/66560c0762d7c.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://img.freepik.com/premium-photo/wooden-table-with-wooden-background-green-screen-news-studio-3d-illustration_327072-1419.jpg?w=740" />
-        </SwiperSlide>
+        {
+          mostViewsNews.map(news =><SwiperSlide key={news._id}>
+            <img className='h-[200px]' src={news.image}/>
+          </SwiperSlide>)
+        }
        
       </Swiper>
         </div>

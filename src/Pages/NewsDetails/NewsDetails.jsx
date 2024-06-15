@@ -12,7 +12,6 @@ const NewsDetails = () => {
             return res.data
         }
     })
-    console.log(news);
     return (
         <div className={`${news.isPremium ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pt-24 min-h-[calc(100vh-290px)]' : 'pt-24 min-h-[calc(100vh-290px)]'}`}>
         <div>
@@ -41,6 +40,7 @@ const NewsDetails = () => {
                     <p className='font-bold'><span>Email : </span> {news.author_email}</p>
                     </div>
                     <p className='font-bold'><span>Date : </span> {news.date}</p>
+                    <p className='font-bold'><span>Views : </span> {news.views}</p>
                 </div>
             </div>
         </div>

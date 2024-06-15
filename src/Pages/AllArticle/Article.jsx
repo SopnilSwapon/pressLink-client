@@ -5,6 +5,7 @@ import usePremiumUser from '../../Hooks/usePremiumUser';
 const Article = ({ aNews }) => {
     const highlightDescription = aNews?.description?.length > 70 ? aNews.description.slice(0, 70) + '...' : aNews?.description;
     const isPremiumUser = usePremiumUser();
+    console.log('updated', aNews.updateView);
     return (
         <div className={`${aNews.isPremium ? 'bg-gradient-to-r from-gray-300 via-purple-300 to-pink-300 h-[650px] p-6 rounded-md relative shadow-md' : 'p-6 h-[650px] rounded-md bg-gray-400 relative shadow-md'}`}>
             {

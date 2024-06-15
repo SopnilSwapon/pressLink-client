@@ -2,12 +2,34 @@ import PropTypes from 'prop-types'
 import { useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 const MyArticleRow = ({articleInfo, refetch, index}) => {
   const [showModal, setShowModal] = useState(false);
-  const {headline, status, reason, isPremium } = articleInfo ;
-    const handleDeleteNews = () =>{
-        refetch();
-    }
+  const {headline, status, reason, isPremium, date, author_email } = articleInfo ;
+  const axiosPublic = useAxiosPublic();
+  const handleDelete = (date, email) => {
+    const filter = { date, author_email: email }
+    // To deleted news by using post method //
+    axiosPublic.post(`/news/remove`, filter)
+        .then(res => {
+            console.log(res);
+            if (res.data.newsResult.deletedCount > 0 || res.data.addedResult.deletedCount > 0) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Deleted successfully`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            refetch();
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+};
+    
     return (
         <tr>
         <td>{index + 1}</td>
@@ -33,7 +55,7 @@ const MyArticleRow = ({articleInfo, refetch, index}) => {
 </td>
         <td><button className="btn btn-sm">{isPremium === true ? 'Yes' : 'No'}</button></td>       
         <td><button className="btn btn-sm"><FaEdit></FaEdit></button></td>       
-        <td><button onClick={handleDeleteNews} className="btn btn-sm">X</button></td>       
+        <td><button onClick={() => handleDelete(date, author_email)} className="btn btn-error text-white btn-sm">X</button></td>       
     </tr>
     );
 };

@@ -5,7 +5,8 @@ import { FaSackDollar } from "react-icons/fa6";
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const subscriptionOptions = [
     { value: 1, label: '1 Minute Category' },
@@ -13,6 +14,7 @@ const subscriptionOptions = [
     { value: 10, label: '10 Minute Category' },
 ]
 const Subscription = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [plan, setPlan] =  useState()
   const {user} = useAuth();
@@ -31,7 +33,7 @@ const Subscription = () => {
     }
    const res = await axiosPublic.post('/payment', paymentInfo)
     console.log(res.data);
-    if(res.data.insertedId){
+    if(res.data.insertedId || res.data.modifiedCount > 0 || res.data.matchedCount > 0){
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -39,6 +41,7 @@ const Subscription = () => {
         showConfirmButton: false,
         timer: 1500
       });
+      navigate('/payment')
     }
     }
     return (
@@ -60,7 +63,6 @@ const Subscription = () => {
                     </div>
                 </div>
                 <button type='submit' className='btn btn-primary'>Subscribe</button>
-                <Link to='/payment'><button>Payment</button></Link>
             </form >
       </div>
         // </div>

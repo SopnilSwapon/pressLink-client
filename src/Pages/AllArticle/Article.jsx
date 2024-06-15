@@ -14,6 +14,7 @@ const Article = ({ aNews }) => {
                 <h2 className="text-xl font-semibold">{aNews.headline}</h2>
             </div>
             <p>{highlightDescription} </p>
+            <p><span className='font-bold'>Publisher Name : </span>{aNews.publisher}</p>
             <Link to={`/newsDetails/${aNews._id}`}><button className='btn btn-primary absolute bottom-1'>Details</button></Link>
         </div>
     );

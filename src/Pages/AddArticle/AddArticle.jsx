@@ -4,6 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import moment from "moment/moment";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -34,6 +35,14 @@ const AddArticle = () => {
         setValue, 
         reset
     } = useForm();
+
+    const { data: publishers = [] } = useQuery({
+        queryKey: ['publishers'],
+        queryFn: async () => {
+          const res = await axiosPublic.get('/news/publishers');
+          return res.data;
+        }
+      });
 
 
     const onSubmit =async (data) => {
@@ -94,21 +103,11 @@ const AddArticle = () => {
                                 <label className="font-medium block" htmlFor="tags">Select Publisher</label>
                                 <select defaultValue='default' {...register('publisher', {required: true})} className="select select-bordered w-full">
                                     <option disabled value='default'>news desk</option>
-                                    <option>The Hunger Games</option>
-                                    <option>The Chronicles of Narnia</option>
-                                    <option>Sports</option>
-                                    <option>The Matrix</option>
-                                    <option>Jurassic Park</option>
-                                    <option>Marvel Cinematic Universe</option>
-                                    <option>DC Extended Universe</option>
-                                    <option>Avatar</option>
-                                    <option>Transformers</option>
-                                    <option>James Bond</option>
-                                    <option>Star Wars</option>
-                                    <option>Harry Potter</option>
-                                    <option>Lord of the Rings</option>
-                                    <option>Planet of the Apes</option>
-                                    <option>Star Trek</option>
+                                    
+                                    {
+                                        publishers.map(publisher => 
+                                        <option key={publisher._id}>{publisher.publisherName}</option>)
+                                    }
                                 </select>
                                 
                             </div>

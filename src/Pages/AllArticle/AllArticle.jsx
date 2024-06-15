@@ -12,7 +12,7 @@ const AllArticle = () => {
   const [searchText, setSearchText] = useState(' ');
   const [newsTag, setNewsTag] = useState(' ');
 
-  const { data: news = [], isPending ,isFetching} = useQuery({
+  const { data: news = [], isFetching} = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
       const res = await axiosPublic.get('/news');
@@ -28,7 +28,7 @@ const AllArticle = () => {
     }
   });
 
-  const { data: publish = [], isPending: isPublishPending } = useQuery({
+  const { data: publish = [] } = useQuery({
     queryKey: ['publish', publisherName],
     queryFn: async () => {
       const res = await axiosPublic.get(`/news/${publisherName}`);
@@ -52,7 +52,7 @@ const AllArticle = () => {
       setPublisherName('');
       setNewsTag('')
   };
-  const {data:searchData=[], isPending:searchPending} = useQuery({
+  const {data:searchData=[]} = useQuery({
     queryKey: ['searchData', searchText],
     queryFn: async () =>{
       const res = axiosPublic(`/news/search/${searchText}`);
@@ -66,7 +66,7 @@ const AllArticle = () => {
       return result.data
     }
   }) 
-  const {data:tagsData=[], isPending:tagDataPending} = useQuery({
+  const {data:tagsData=[]} = useQuery({
     queryKey: ['tagsData', newsTag],
     queryFn: async() =>{
       const result = await axiosPublic(`/newsTags/${newsTag}`);
@@ -90,9 +90,9 @@ const AllArticle = () => {
                 {publishers.map((publisher, idx) => (
                   <MenuItem
                     key={idx}
-                    value={publisher.publisher}
+                    value={publisher.publisherName}
                   >
-                    {publisher.publisher}
+                    {publisher.publisherName}
                   </MenuItem>
                 ))}
               </Select>

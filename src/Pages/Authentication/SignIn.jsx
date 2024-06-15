@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SignIn = () => {
   const {loginUser, googleLogin} = useAuth();
   const axiosPublic = useAxiosPublic();
@@ -88,6 +88,7 @@ const SignIn = () => {
      <p>Social login links</p>
         <FcGoogle onClick={handleGoogleLogin} className="text-3xl w-10 mt-3 mx-auto"></FcGoogle>
      </div>
+     <p className="text-center">New? <Link to='/signUp' className="text-green-600 font-bold">Register</Link></p>
        </div>
      </form>
         </div>

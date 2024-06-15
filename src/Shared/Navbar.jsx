@@ -26,7 +26,7 @@ const Navbar = () => {
         <li><NavLink to='/subscription'>Subscription</NavLink></li>
 
         {
-            userRole === 'Admin' ? <li><NavLink to='/dashboard/allUsers'>Dashboard</NavLink></li> : ''
+            userRole === 'Admin' ? <li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li> : ''
         }
         <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
     </>

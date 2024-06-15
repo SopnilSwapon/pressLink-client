@@ -19,6 +19,7 @@ import Subscription from "../Pages/Subscription/Subscription";
 import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import Payment from "../Pages/Payment/Payment";
 import MyProfile from "../Pages/Authentication/MyProfile";
+import AdminHome from "../Pages/Dashboard/AdminHome";
   
   const router = createBrowserRouter([
     {
@@ -48,15 +49,15 @@ import MyProfile from "../Pages/Authentication/MyProfile";
         },
         {
           path: '/newsDetails/:id',
-          element: <NewsDetails></NewsDetails>
+          element: <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>
         },
         {
           path: '/myArticle',
-          element: <MyArticle></MyArticle>
+          element: <PrivateRoute> <MyArticle></MyArticle></PrivateRoute>
         },
         {
           path: '/subscription',
-          element: <Subscription></Subscription>
+          element: <PrivateRoute><Subscription></Subscription></PrivateRoute>
         },
         {
           path: '/premiumArticle',
@@ -64,7 +65,7 @@ import MyProfile from "../Pages/Authentication/MyProfile";
         },
         {
           path: '/payment',
-          element: <Payment></Payment>
+          element: <PrivateRoute><Payment></Payment></PrivateRoute>
         },
         {
           path: '/myProfile',
@@ -74,19 +75,23 @@ import MyProfile from "../Pages/Authentication/MyProfile";
     },
     {
       path: '/dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         {
+          path: 'adminHome',
+          element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>
+        },
+        {
           path: 'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
         },
         {
           path: 'allArticleDash',
-          element: <AllArticleDash></AllArticleDash>
+          element: <PrivateRoute><AllArticleDash></AllArticleDash></PrivateRoute>
         },
         {
           path: 'addPublisher',
-          element: <AddPublisher></AddPublisher>
+          element: <PrivateRoute><AddPublisher></AddPublisher></PrivateRoute>
         }
       ]
     }

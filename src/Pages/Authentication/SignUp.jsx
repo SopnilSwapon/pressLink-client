@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import regPic from '../../assets/Animation - 1717392611042.json'
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {  updateProfile } from "firebase/auth";
 
 const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -75,9 +75,13 @@ const SignUp = () => {
      <input name="password" type="password" className="input input-bordered block" placeholder="type your password"  {...register("password", { required: true, minLength: 6, pattern:  /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9])/})} />
      {errors.password && <span className="text-red-700">Password should have at least six character & one uppercase,lowercase, digit & special character.</span>}
      <input value='Sign Up' className="btn btn-primary mt-5" type="submit" />
+     <p className="text-center">Have an account? <Link to='/signIn' className="text-green-600 font-bold">SignIn</Link></p>
+
       </div>
+      
     </form>
        {/* </div> */}
+
        </div>
         </div>
     );

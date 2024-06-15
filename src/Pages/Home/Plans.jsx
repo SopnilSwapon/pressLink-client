@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 const Plans = () => {
     const bull = (
         <Box
@@ -38,7 +39,7 @@ const Plans = () => {
                         </Typography>
                     </CardContent>
                     <div className='pl-1'>
-                   <button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium Family</button>
+                   <Link to='/subscription'><button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium</button></Link>
                    </div>
                     <CardActions>
                         <Button className='!btn !btn-badge !btn-sm' size="small">Learn More</Button>
@@ -68,7 +69,7 @@ const Plans = () => {
                         </Typography>
                     </CardContent>
                     <div className='pl-1'>
-                   <button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium Family</button>
+                    <Link to='/subscription'><button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium Dua</button></Link>
                    </div>
                     <CardActions>
                         <Button className='!btn !btn-badge !btn-sm' size="small">Learn More</Button>
@@ -98,7 +99,7 @@ const Plans = () => {
                         </Typography>
                     </CardContent>
                    <div className='pl-1'>
-                   <button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium Family</button>
+                   <Link to='/subscription'><button className='!badge !badge-secondary !opacity-90 !text-xl !w-[70%] p-5'>Get Premium Family</button></Link>
                    </div>
                     <CardActions>
                         <Button className='!btn !btn-badge !btn-sm' size="small">Learn More</Button>

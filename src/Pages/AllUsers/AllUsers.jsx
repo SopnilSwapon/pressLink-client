@@ -11,7 +11,6 @@ const AllUsers = () => {
             return res.data;
         }
     })
-    // console.log(allUsers);
     return (
         <div className="overflow-x-auto bg-gray-300 pt-24 min-h-[calc(100vh-276px)]">
         <table className="table text-xl">

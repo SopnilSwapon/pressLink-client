@@ -13,7 +13,6 @@ const MyArticle = () => {
             return res.data
         }
     })
-    console.log(myData);
     return (
         <div className="overflow-x-auto bg-gray-300 pt-24 min-h-[calc(100vh-276px)]">
         <table className="table text-xl">

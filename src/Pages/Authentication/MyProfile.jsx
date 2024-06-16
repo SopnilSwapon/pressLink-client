@@ -1,6 +1,7 @@
 import { updateProfile } from "firebase/auth";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import usePremiumUser from "../../Hooks/usePremiumUser";
 
 const MyProfile = () => {
     const {user} = useAuth();
@@ -27,9 +28,10 @@ const MyProfile = () => {
              .catch(error =>{
                 console.log(error.message);
              })
-            //  window.location.reload();
 
     }
+    const isPremiumUser = usePremiumUser();
+
     return (
         <div className="flex pt-24 flex-col md:flex-row-reverse lg:flex-row-reverse  justify-center items-center">
         {/* <Helmet>
@@ -71,6 +73,9 @@ const MyProfile = () => {
   <div className="space-y-4 text-center divide-y dark:divide-gray-300">
       <div className="my-2 space-y-1">
           <h2 data-aos='fade-left' className="text-xl font-semibold sm:text-2xl">{user?.displayName}</h2>
+          {
+            isPremiumUser ? <span className="text-green-700 font-bold">You Are a Premium User</span> : <span className="text-red-700 font-bold">You Are Not  a Premium User</span>
+          }
           <p data-aos='fade-right' className="px-5 text-xs sm:text-base dark:text-gray-600">Full-stack developer</p>
       </div>
       <h2 data-aos='fade-left' className="text-[16px] font-semibold text-center px-8">Others Social Profile</h2>

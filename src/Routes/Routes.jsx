@@ -58,7 +58,7 @@ import UpdateMyArticle from "../Pages/MyArticle/UpdateMyArticle";
         },
         {
           path: '/updateMyArticle/:id',
-          element: <UpdateMyArticle></UpdateMyArticle>
+          element: <PrivateRoute><UpdateMyArticle></UpdateMyArticle></PrivateRoute>
         },
         {
           path: '/subscription',

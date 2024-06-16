@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import SubcripPrice from './SubcripPrice';
 
 
 const subscriptionOptions = [
@@ -49,7 +50,8 @@ const Subscription = () => {
             <div className='w-full'>
                 <img width='100%' className='h-[500px] rounded-lg' src={banner} alt="" />
             </div>
-            <form className="flex flex-col gap-3 items-center" onSubmit={handleSubscription}>
+            <SubcripPrice></SubcripPrice>
+            <form className="flex flex-col mt-4 gap-3 items-center" onSubmit={handleSubscription}>
                 <div className="w-[240px] flex flex-col gap-3">
                     <div className="flex items-center gap-2 pl-2 bg-transparent rounded-lg border border-nexus-secondary">
                         <label className="font-medium" htmlFor="subscription"><FaSackDollar /></label>

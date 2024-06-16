@@ -20,6 +20,7 @@ import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import Payment from "../Pages/Payment/Payment";
 import MyProfile from "../Pages/Authentication/MyProfile";
 import AdminHome from "../Pages/Dashboard/AdminHome";
+import UpdateMyArticle from "../Pages/MyArticle/UpdateMyArticle";
   
   const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ import AdminHome from "../Pages/Dashboard/AdminHome";
         {
           path: '/myArticle',
           element: <PrivateRoute> <MyArticle></MyArticle></PrivateRoute>
+        },
+        {
+          path: '/updateMyArticle/:id',
+          element: <UpdateMyArticle></UpdateMyArticle>
         },
         {
           path: '/subscription',

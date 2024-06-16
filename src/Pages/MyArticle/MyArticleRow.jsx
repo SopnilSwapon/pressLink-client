@@ -4,9 +4,10 @@ import { FaEdit } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { Link } from 'react-router-dom';
 const MyArticleRow = ({articleInfo, refetch, index}) => {
   const [showModal, setShowModal] = useState(false);
-  const {headline, status, reason, isPremium, date, author_email } = articleInfo ;
+  const {headline, status, reason, isPremium, date, author_email, _id } = articleInfo ;
   const axiosPublic = useAxiosPublic();
   const handleDelete = (date, email) => {
     const filter = { date, author_email: email }
@@ -37,7 +38,7 @@ const MyArticleRow = ({articleInfo, refetch, index}) => {
         <td><button className="btn btn-sm">Details</button></td>       
         <td>
             <button className="btn btn-sm">{status}</button> <small className='text-red-500 underline' onClick={() => setShowModal(true)
-                }>{reason ? 'Reason' : ''}</small>
+                }>{status !== 'Pending' && reason ? 'Reason' : ''}</small>
            
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             {showModal &&
@@ -54,7 +55,11 @@ const MyArticleRow = ({articleInfo, refetch, index}) => {
             }
 </td>
         <td><button className="btn btn-sm">{isPremium === true ? 'Yes' : 'No'}</button></td>       
-        <td><button className="btn btn-sm"><FaEdit></FaEdit></button></td>       
+        <td>
+            <Link to={`/updateMyArticle/${_id}`}>
+            <button className="btn btn-sm"><FaEdit></FaEdit></button>
+            </Link>
+            </td>       
         <td><button onClick={() => handleDelete(date, author_email)} className="btn btn-error text-white btn-sm">X</button></td>       
     </tr>
     );

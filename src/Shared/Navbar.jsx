@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import './theme.css'
 import useAuth from "../Hooks/useAuth";
 import useAdminRole from "../Hooks/useAdminRole";
+import usePremiumUser from "../Hooks/usePremiumUser";
 
 const Navbar = () => {
     const [theme, setTheme] = useState('light');
     const { logOut, user } = useAuth();
+    const isPremiumUser = usePremiumUser();
     const userRole = useAdminRole();
     const toggleTheme = () => {
         if (theme === 'light') {
@@ -18,6 +20,7 @@ const Navbar = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
+    console.log('check users', isPremiumUser);
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allArticle'>All Article</NavLink></li>
@@ -28,7 +31,9 @@ const Navbar = () => {
         {
             userRole === 'Admin' ? <li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li> : ''
         }
-        <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
+        {
+            isPremiumUser && <li><NavLink to='/premiumArticle'>Premium Article</NavLink></li>
+        }
     </>
     const handleLogOut = () => {
         logOut()

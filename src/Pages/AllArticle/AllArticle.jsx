@@ -146,7 +146,15 @@ const AllArticle = () => {
                       :
                       <>
                         {searchText ?
-                          searchData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
+                          <div >
+                            {
+                              searchData?.length > 0 ? searchData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>) 
+                              : 
+                              <div>
+                                <p className='text-6xl text-center font-bold'>Have not Found Any Data <br /> <span>Please try another data</span></p>
+                              </div>
+                            }
+                          </div>
                           :
                           tagsData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
                         }

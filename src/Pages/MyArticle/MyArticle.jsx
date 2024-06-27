@@ -46,7 +46,7 @@ const MyArticle = () => {
        </tbody>
       </table>
       : 
-      <p className="text-4xl text-red-600 md:text-6xl text-center m-14 font-bold">YOU DID NOT ADD <br /> NEWS YET <br /> <span className="text-black">Please Add News</span></p>
+      <p className="text-4xl text-red-600 md:text-6xl text-center m-14 font-bold">YOU HAVE NOT ADD <br /> NEWS YET <br /> <span className="text-black">Please Add News</span></p>
 
        }
       </div>

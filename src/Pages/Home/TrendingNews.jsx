@@ -13,6 +13,7 @@ import './trending.css';
 import { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper/modules';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import Marquee from 'react-fast-marquee';
 const TrendingNews = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const axiosPublic = useAxiosPublic();
@@ -23,9 +24,16 @@ const TrendingNews = () => {
         return res.data
       }
     })
-    console.log(mostViewsNews);
 
     return (
+      <>
+      <Marquee>
+      <div className='flex gap-x-5'>
+      {
+        mostViewsNews.map(news =><h2 key={news._id}>{news?.headline}</h2>)
+      }
+      </div>
+      </Marquee>
         <div className='h-full'>
        <Swiper
         style={{
@@ -46,12 +54,12 @@ const TrendingNews = () => {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 flex mx-auto border border-red-600"
+        className="mySwiper2 flex mx-auto border"
       >
         {
           mostViewsNews.map(news => <SwiperSlide key={news._id}>
             <p className='text-white font-bold right-5 mt-3 absolute z-20'> Views: {news.views}</p>
-            <img className='w-full mx-auto relative' src={news.image} />
+            <img className='w-full h-[500px] mx-auto relative' src={news.image} />
           </SwiperSlide>)
         }
       
@@ -80,6 +88,7 @@ const TrendingNews = () => {
        
       </Swiper>
         </div>
+      </>
     );
 };
 

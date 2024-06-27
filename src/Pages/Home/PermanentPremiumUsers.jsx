@@ -2,11 +2,11 @@ import Marquee from "react-fast-marquee";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 const PermanentPremiumUsers = () => {
     return (
-        <section className="py-6 dark:bg-gray-100 dark:text-gray-800">
-            <div className="container p-4 mx-auto space-y-16 sm:p-10">
-                <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-center sm:text-5xl">Our Permanent Premium Users</h3>
-                    <p className="max-w-2xl text-center mx-auto dark:text-gray-600">They are our permanent users since 2019 years.If you want show your image in this section you have to be permanent user at least 6 month then we will add you in this section.This images will stay as long as you stay our premium user.</p>
+        <section className="py-2 dark:bg-gray-100 dark:text-gray-800">
+            <div className="container p-4 mx-auto space-y-12 sm:p-10">
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-center md:text-5xl">Our Permanent Premium Users</h3>
+                    <p className="text-center mx-auto">They are our permanent users since 2019 years.If you want show your image in this section you have to be permanent user at least 6 month then we will add you in this section.This images will stay as long as you stay our premium user.You will remove from here when you will be normal user,So stay Premium user & stay here to be proud our premium user.</p>
                 </div>
                 <Marquee>
                     <div className="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">

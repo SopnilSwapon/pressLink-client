@@ -3,10 +3,10 @@ import faq from '../../assets/faq.json'
 const Faq = () => {
     return (
       <>
-      <h2 className='text-3xl font-bold text-center mt-10'>Your questions answered about us</h2>
+      <h2 className='text-3xl font-bold text-center mt-10'>Answers to your questions about us</h2>
       <p className='md:w-[68%] mx-auto text-center mt-3'>Find answers to the most common questions about our newspaper. Whether you are looking for subscription details, information on our editorial process, or how to submit a story, our FAQ section covers it all. Browse through our comprehensive list of questions to get the information you need.</p>
-        <div className='flex sm:flex-col md:flex-row  lg:flex-row justify-between items-center'>
-           <div className='flex-1'>
+        <div className='flex flex-col md:flex-row  lg:flex-row justify-between items-center'>
+           <div className='flex-1 mt-5'>
            <div className="collapse collapse-plus bg-base-200">
   <input type="radio" name="my-accordion-3" defaultChecked /> 
   <div className="collapse-title text-xl font-medium">

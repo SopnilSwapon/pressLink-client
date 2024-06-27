@@ -31,12 +31,11 @@ const PremiumArticle = () => {
                     {
                 isPremiumUser && art.isPremium ?
                 <>
-                <Link to={`/newsDetails/${art._id}`}><button className='btn btn-primary absolute bottom-1'>Details</button></Link></> 
+                <Link to={`/newsDetails/${art._id}`}><button className='btn btn-primary absolute bottom-2'>Details</button></Link></> 
                 :
-                <Link to={`/newsDetails/${art._id}`}><button disabled={art.isPremium} className='btn btn-primary absolute bottom-1'>Details</button></Link>
+                <Link to={`/newsDetails/${art._id}`}><button disabled={art.isPremium} className='btn btn-primary absolute bottom-2'>Details</button></Link>
 
             }
-                        {/* <Link to={`/newsDetails/${art._id}`}><button className="btn btn-primary">Details</button></Link> */}
                     </div>
                 </div>
             </div>)

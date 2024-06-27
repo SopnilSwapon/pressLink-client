@@ -20,14 +20,12 @@ const SignUp = () => {
 
   const onSubmit = async (data) =>{ 
     const {email, password, name} = data;
-    console.log(data);
     const imageFile = {image: data.image[0]}
     const imgRes = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         'content-type': 'multipart/form-data'
       }
     } );
-    console.log(imgRes.data);
     createUser(email, password)
     .then(result =>{
       console.log(result.user);
@@ -44,7 +42,6 @@ const SignUp = () => {
       }
       axiosPublic.post('/users', userInfo)
       .then(res =>{
-       
         console.log(res.data);
         navigate('/')
       })

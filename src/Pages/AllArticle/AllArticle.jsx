@@ -75,8 +75,8 @@ const AllArticle = () => {
   })
   return (
     <div className='min-h-[calc(100vh-313px)] pt-24'>
-      <div className='flex w-[95%] mb-5 mx-auto gap-4 justify-center'>
-        <div className='w-full'>
+      <div className='flex flex-col md:flex-row lg:flex-row w-[95%] mb-5 mx-auto gap-4 justify-center'>
+        <div className='w-full bg-white p-2'>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Filter by Publisher</InputLabel>
@@ -99,7 +99,7 @@ const AllArticle = () => {
             </FormControl>
           </Box>
         </div>
-        <div className='w-full'>
+        <div className='w-full bg-white p-2'>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Tags</InputLabel>
@@ -121,7 +121,7 @@ const AllArticle = () => {
             </FormControl>
           </Box>
         </div>
-        <form onSubmit={handleSearch} className='flex'>
+        <form onSubmit={handleSearch} className='flex bg-white p-2'>
           <label className="input input-bordered h-14 w-full rounded-r-none border-r-0 flex items-center ">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
             <input type="text" name='searchField' className="grow" placeholder="Search" />
@@ -129,33 +129,12 @@ const AllArticle = () => {
           <button type='submit' className='btn bg-black h-14 rounded-l-none text-white'>Search</button>
         </form>
       </div>
-      {/* { isPending || isPublishPending || searchPending || tagDataPending? (
-        <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie>
-      ) : (
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-          {publisherName || searchText || newsTag ?
-           <>
-            {
-              publisherName ?
-              publish.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-              :
-              <>
-              { searchText ?
-                searchData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-                :
-                tagsData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-              }
-              </>
-
-            }
-          </>
-            : news.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-          }
-        </div>
-      )} */}
-      {isFetching ?  <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie> : 
-      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-      {publisherName || searchText || newsTag ?
+      {
+      isFetching ?  
+      <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie> 
+      : <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5'>
+      {
+      publisherName || searchText || newsTag ?
        <>
         {
           publisherName ?

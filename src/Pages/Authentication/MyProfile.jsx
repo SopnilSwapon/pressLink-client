@@ -2,6 +2,7 @@ import { updateProfile } from "firebase/auth";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import usePremiumUser from "../../Hooks/usePremiumUser";
+import { Helmet } from "react-helmet-async";
 
 const MyProfile = () => {
     const {user} = useAuth();
@@ -34,9 +35,9 @@ const MyProfile = () => {
 
     return (
         <div className="flex pt-24 flex-col md:flex-row-reverse lg:flex-row-reverse  justify-center items-center">
-        {/* <Helmet>
-          <title>VenueHub || updateProfile</title>
-        </Helmet> */}
+        <Helmet>
+          <title>PressLink || Profile</title>
+        </Helmet>
          <div className=" mb-10 lg:mb-10">
    <div className="hero p-5">
 <div className="hero-content flex-col">

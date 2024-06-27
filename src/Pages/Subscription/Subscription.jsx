@@ -7,12 +7,13 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import SubcripPrice from './SubcripPrice';
+import { Helmet } from 'react-helmet-async';
 
 
 const subscriptionOptions = [
-    { value: 1, label: '1 Minute Category' },
-    { value: 5, label: '5 Minute Category' },
-    { value: 10, label: '10 Minute Category' },
+    { value: 1, label: '1 Month Category' },
+    { value: 5, label: '5 Month Category' },
+    { value: 10, label: '10 Month Category' },
 ]
 const Subscription = () => {
   const navigate = useNavigate();
@@ -47,6 +48,9 @@ const Subscription = () => {
     }
     return (
         <div className="pt-24">
+           <Helmet>
+                <title>PressLink || Subscription</title>
+            </Helmet>
             <div className='w-full'>
                 <img width='100%' className='h-[500px] rounded-lg' src={banner} alt="" />
             </div>

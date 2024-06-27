@@ -5,6 +5,7 @@ import moment from "moment/moment";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -89,6 +90,9 @@ const AddArticle = () => {
     }
     return (
         <div className="pt-24 min-h-[calc(100vh-312px)]">
+             <Helmet>
+                <title>PressLink || Add Article</title>
+            </Helmet>
             <h2 className="text-4xl font-bold text-center mb-10">Add a Article</h2>
             <div className="md:flex justify-center gap-10 items-center bg-gray-400 pb-5">
                 <form className="w-full flex justify-center md:justify-normal lg:justify-normal" onSubmit={handleSubmit(onSubmit)}>

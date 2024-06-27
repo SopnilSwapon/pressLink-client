@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const SignIn = () => {
   const {loginUser, googleLogin} = useAuth();
   const axiosPublic = useAxiosPublic();
@@ -72,6 +73,9 @@ const SignIn = () => {
               }
     return (
         <div className="pt-24 min-h-[calc(100vh-312px)]">
+           <Helmet>
+                <title>PressLink || SignIn</title>
+            </Helmet>
         <div className="md:flex justify-center gap-10 items-center border border-r-red-600">
         <Lottie className="w-full h-[150px] lg:h-full md:h-full" animationData={regPic}></Lottie>
         <form className="w-full flex justify-center md:justify-normal lg:justify-normal" onSubmit={handleSubmit(onSubmit)}>

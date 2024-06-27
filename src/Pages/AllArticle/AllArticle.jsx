@@ -4,7 +4,8 @@ import Article from './Article';
 import loader from '../../assets/Animation - 1717751158249 (1).json'
 import Lottie from 'lottie-react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import  { useState } from 'react';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const AllArticle = () => {
   const axiosPublic = useAxiosPublic();
@@ -12,7 +13,7 @@ const AllArticle = () => {
   const [searchText, setSearchText] = useState(' ');
   const [newsTag, setNewsTag] = useState(' ');
 
-  const { data: news = [], isFetching} = useQuery({
+  const { data: news = [], isFetching } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
       const res = await axiosPublic.get('/news');
@@ -44,37 +45,40 @@ const AllArticle = () => {
     setPublisherName('');
     setSearchText('')
   };
-  const handleSearch = e =>{
+  const handleSearch = e => {
     e.preventDefault();
     const search = e.target.elements.searchField.value;
-      setSearchText(search);
-      e.target.reset();
-      setPublisherName('');
-      setNewsTag('')
+    setSearchText(search);
+    e.target.reset();
+    setPublisherName('');
+    setNewsTag('')
   };
-  const {data:searchData=[]} = useQuery({
+  const { data: searchData = [] } = useQuery({
     queryKey: ['searchData', searchText],
-    queryFn: async () =>{
+    queryFn: async () => {
       const res = axiosPublic(`/news/search/${searchText}`);
       return (await res).data
     }
   });
-  const {data:tags=[]} = useQuery({
+  const { data: tags = [] } = useQuery({
     queryKey: ['tags'],
-    queryFn: async () =>{
+    queryFn: async () => {
       const result = await axiosPublic('/news-tags')
       return result.data
     }
-  }) 
-  const {data:tagsData=[]} = useQuery({
+  })
+  const { data: tagsData = [] } = useQuery({
     queryKey: ['tagsData', newsTag],
-    queryFn: async() =>{
+    queryFn: async () => {
       const result = await axiosPublic(`/newsTags/${newsTag}`);
       return result.data
     }
   })
   return (
     <div className='min-h-[calc(100vh-313px)] pt-24'>
+      <Helmet>
+        <title>PressLink || All Article</title>
+      </Helmet>
       <div className='flex flex-col md:flex-row lg:flex-row w-[95%] mb-5 mx-auto gap-4 justify-center'>
         <div className='w-full bg-white p-2'>
           <Box sx={{ minWidth: 120 }}>
@@ -111,11 +115,11 @@ const AllArticle = () => {
                 onChange={handleChangeTags}
               >
                 {
-                  tags.map((tag, index) =><MenuItem
-                  key={index}
-                   value={tag.tag}
+                  tags.map((tag, index) => <MenuItem
+                    key={index}
+                    value={tag.tag}
 
-                   >{tag.tag}</MenuItem>)
+                  >{tag.tag}</MenuItem>)
                 }
               </Select>
             </FormControl>
@@ -130,29 +134,29 @@ const AllArticle = () => {
         </form>
       </div>
       {
-      isFetching ?  
-      <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie> 
-      : <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5'>
-      {
-      publisherName || searchText || newsTag ?
-       <>
-        {
-          publisherName ?
-          publish.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-          :
-          <>
-          { searchText ?
-            searchData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-            :
-            tagsData.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-          }
-          </>
+        isFetching ?
+          <Lottie className='w-[20%] mx-auto' animationData={loader}></Lottie>
+          : <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5'>
+            {
+              publisherName || searchText || newsTag ?
+                <>
+                  {
+                    publisherName ?
+                      publish.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
+                      :
+                      <>
+                        {searchText ?
+                          searchData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
+                          :
+                          tagsData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
+                        }
+                      </>
 
-        }
-      </>
-        : news.map(aNews =><Article key={aNews._id} aNews={aNews}></Article>)
-      }
-    </div>
+                  }
+                </>
+                : news.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>)
+            }
+          </div>
       }
     </div>
   );

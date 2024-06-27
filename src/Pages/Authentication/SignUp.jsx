@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import {  updateProfile } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -53,6 +54,9 @@ const SignUp = () => {
   }
     return (
         <div className="pt-24 min-h-[calc(100vh-312px)]">
+           <Helmet>
+                <title>PressLink || SignUp</title>
+            </Helmet>
        <div className="md:flex justify-center items-center border border-r-red-600">
        <Lottie className="w-full h-[150px] lg:h-full md:h-full" animationData={regPic}></Lottie>
        <form className="w-full flex justify-center md:justify-normal lg:justify-normal" onSubmit={handleSubmit(onSubmit)}>
@@ -60,8 +64,6 @@ const SignUp = () => {
       <h2 className="text-4xl font-bold text-center mb-5">Sign Up</h2>
       <label htmlFor="name" className="block">Name</label>
       <input type="text" className="input input-bordered" placeholder="type your name" {...register("name")} />
-      {/* <label htmlFor="name" className="block">Photo URL</label>
-     <input type="text" className="input input-bordered block" placeholder="type your photo url"  {...register("photo", { required: true })} /> */}
      <div className="block">
                             <label className="font-medium block" htmlFor="tags">Upload Photo</label>
                                 <input {...register('image', {required: true})} type="file" className="file-input input-bordered w-full" />

@@ -60,7 +60,7 @@ const UsersStatictics = () => {
 		</div>
 		<div className="flex p-4 space-x-4 rounded-lg md:space-x-6 dark:bg-gray-50 dark:text-gray-800">
 			<div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-violet-600">
-				<FaUsersGear className='text-2xl text-pink-400'></FaUsersGear>
+				<FaUsersGear className='text-2xl'></FaUsersGear>
 			</div>
 			<div className="flex flex-col justify-center align-middle">
             <CountUp end={premiumUsers?.length} duration="7" onStart={onStart} onEnd={onEnd} containerProps={containerProps} />

@@ -3,6 +3,7 @@ import premiumSign from '../../../src/assets/star.jpg'
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { Link } from 'react-router-dom';
 import usePremiumUser from '../../Hooks/usePremiumUser';
+import { Helmet } from 'react-helmet-async';
 const PremiumArticle = () => {
     const axiosPublic = useAxiosPublic();
 
@@ -17,10 +18,13 @@ const PremiumArticle = () => {
 
     return (
        <div>
+         <Helmet>
+                <title>PressLink || Premium article</title>
+            </Helmet>
         <h2 className="pt-24 text-3xl text-center font-bold pb-10">Our Premium Articles</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {
-            premiumArticle.map(art => <div key={art._id} className="glass md:w-96 relative opacity-90 bg-gradient-to-r from-gray-300 via-purple-300 to-pink-300 ">
+            premiumArticle.map(art => <div key={art._id} className="glass md:w-96 relative opacity-90 bg-gradient-to-r from-gray-200 via-purple-200 to-pink-200 ">
                 <img className='w-12 -mt-3 rounded-full -right-4 bg-neutral absolute' src={premiumSign} alt="" />
                 <figure><img className='md:h-[290px] rounded-lg' src={art.image} alt="car!" /></figure>
                 <div className="card-body">

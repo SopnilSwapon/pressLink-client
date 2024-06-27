@@ -13,7 +13,7 @@ const NewsDetails = () => {
         }
     })
     return (
-        <div className={`${news.isPremium ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pt-24 min-h-[calc(100vh-290px)]' : 'pt-24 min-h-[calc(100vh-290px)]'}`}>
+        <div className={`${news.isPremium ? 'bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 pt-24 min-h-[calc(100vh-290px)]' : 'pt-24 min-h-[calc(100vh-290px)]'}`}>
         <div>
              {/* <Helmet>
             <title>VenueHub || details </title>

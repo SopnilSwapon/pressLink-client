@@ -146,12 +146,16 @@ const AllArticle = () => {
                       :
                       <>
                         {searchText ?
-                          <div >
+                          <div className='col-span-3'>
                             {
-                              searchData?.length > 0 ? searchData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>) 
+                              searchData?.length > 0 ? <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3'>
+                                {
+                                   searchData.map(aNews => <Article key={aNews._id} aNews={aNews}></Article>) 
+                                }
+                              </div>
                               : 
                               <div>
-                                <p className='text-6xl text-center font-bold'>Have not Found Any Data <br /> <span>Please try another data</span></p>
+                                <p className='text-4xl text-center mt-10 font-bold'>Have not Found Any Data <br /> <span>Please try another data</span></p>
                               </div>
                             }
                           </div>
